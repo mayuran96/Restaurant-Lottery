@@ -1,0 +1,31 @@
+body {
+  padding: 50px;
+  font-size:18px;
+  font-family:'Roboto', sans-serif;
+  font-weight:800;
+  background-image: url("../images/food.jpg");
+}
+
+a {
+  color: #00B7FF;
+}
+
+#signIn{
+  float:right;
+  position:absolute;
+  top:285px;
+  right:0px;
+
+
+}
+
+#header
+{
+  font-size: 36px;
+  font-weight:800;
+}
+
+.jumbotron
+{
+  background-color:white !important;
+}
