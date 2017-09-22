@@ -3,6 +3,22 @@ var rand = require("random-key");
 var router = express.Router();
 var bodyParser = require('body-parser');
 const yelp = require('yelp-fusion')
+var mysql = require('mysql');
+
+var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'hang9194',
+    database : 'Cuisines'
+});
+
+connection.connect(function(err){
+    if(err){
+        console.log('Error connecting to Db');
+        return;
+    }
+    console.log('Connection established');
+});
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -23,7 +39,12 @@ router.post('/search',function (req, res){
     var obj = JSON.stringify(req.body);
     var cuisines = JSON.parse(obj);
     console.log(cuisines);
-    var food = cuisines["cuisineOne"] + " food"
+    var food = cuisines["cuisineOne"] + " food";
+    connection.query("INSERT INTO restaurants (cuisineOne) VALUES ('Bombay Palace');", function (err, rows, fields) {
+        if (err) throw err;
+    });
+
+
     console.log(food);//this object is the return value of JSON data
     const clientId = 'JT_RwwuUVgPxnnkKcR3D7w';
     const clientSecret = 'H8nWwtyDb3bGiAVcqHLGz0Ux0wGXgqi30vEmW99pi3MXohdQEqwtR5ATYSijS2ZT';
