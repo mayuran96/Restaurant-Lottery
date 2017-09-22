@@ -1,6 +1,8 @@
 var express = require('express');
 var rand = require("random-key");
 var router = express.Router();
+var bodyParser = require('body-parser');
+const yelp = require('yelp-fusion')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -16,4 +18,35 @@ router.post('/acceptKey',function(req, res, next)
 {
     console.log("Data posted");
 });
+
+router.post('/search',function (req, res){
+    var obj = JSON.stringify(req.body);
+    var cuisines = JSON.parse(obj);
+    console.log(cuisines);
+    var food = cuisines["cuisineOne"] + " food"
+    console.log(food);//this object is the return value of JSON data
+    const clientId = 'JT_RwwuUVgPxnnkKcR3D7w';
+    const clientSecret = 'H8nWwtyDb3bGiAVcqHLGz0Ux0wGXgqi30vEmW99pi3MXohdQEqwtR5ATYSijS2ZT';
+
+    const searchRequest = {
+        term: food,
+        location: 'san francisco, ca'
+    };
+
+    yelp.accessToken(clientId, clientSecret).then(response => {
+        const client = yelp.client(response.jsonBody.access_token);
+
+        client.search(searchRequest).then(response => {
+            const firstResult = response.jsonBody.businesses[0];
+            const prettyJson = JSON.stringify(firstResult, null, 4);
+            console.log(prettyJson);
+        });
+    }).catch(e => {
+        console.log(e);
+
+    });
+
+});
+
+
 module.exports = router;

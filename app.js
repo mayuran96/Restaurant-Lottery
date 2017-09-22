@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-const yelp = require('yelp-fusion');
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -46,27 +46,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.post('/yelp',function (req, res){
-    const clientId = 'JT_RwwuUVgPxnnkKcR3D7w';
-    const clientSecret = 'H8nWwtyDb3bGiAVcqHLGz0Ux0wGXgqi30vEmW99pi3MXohdQEqwtR5ATYSijS2ZTs';
-
-
-    const token = yelp.accessToken(clientId, clientSecret).then(response => {
-        console.log(response.jsonBody.access_token);
-    }).catch(e => {
-        console.log(e);
-    });
-
-    client.search({
-        term:'',
-        location: ''
-    }).then(response => {
-        console.log(response.jsonBody.businesses[0].name);
-    }).catch(e => {
-        console.log(e);
-    });
-
-});
 
 
 module.exports = app;
