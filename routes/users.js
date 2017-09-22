@@ -61,6 +61,7 @@ router.post('/search',function (req, res){
             const firstResult = response.jsonBody.businesses[0];
             const prettyJson = JSON.stringify(firstResult, null, 4);
             console.log(prettyJson);
+            res.send(firstResult);
         });
     }).catch(e => {
         console.log(e);

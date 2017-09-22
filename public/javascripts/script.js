@@ -39,7 +39,22 @@ $(document).on('click', '#submitCuisine', function() {
         data: JSON.stringify(data),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function(data){}
+        success: function(data){
+            $('#restaurant').prepend('<img id="res" src="'+ data['image_url'] +'">')
+            $('#restaurant').append('<br>');
+            $('#restaurant').append('<b> Restaurant Name: '+data["name"]+'</b>');
+            $('#restaurant').append('<br>');
+            $('#restaurant').append('<b> Location: '+data["location"]["address1"]+'</b>');
+            $('#restaurant').append('<br>');
+            $('#restaurant').append('<b> City: '+data["location"]["city"]+'</b>');
+            $('#restaurant').append('<br>');
+            $('#restaurant').append('<b> Rating: '+data["rating"]+'</b>');
+            $('#restaurant').append('<br>');
+            $('#restaurant').append('<b> Price: '+data["price"]+'</b>');
+            $('#restaurant').append('<br>');
+            $('#restaurant').append('<b> Phone Number: '+data["display_phone"]+'</b>');
+            console.log(data);
+        }
     });
 });
 
