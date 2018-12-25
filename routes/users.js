@@ -5,20 +5,20 @@ var bodyParser = require('body-parser');
 const yelp = require('yelp-fusion')
 var mysql = require('mysql');
 
-var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'hang9194',
-    database : 'Cuisines'
-});
+// var connection = mysql.createConnection({
+//     host     : 'localhost',
+//     user     : 'root',
+//     password : '',
+//     database : 'Cuisines'
+// });
 
-connection.connect(function(err){
-    if(err){
-        console.log('Error connecting to Db');
-        return;
-    }
-    console.log('Connection established');
-});
+// connection.connect(function(err){
+//     if(err){
+//         console.log('Error connecting to Db');
+//         return;
+//     }
+//     console.log('Connection established');
+// });
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
