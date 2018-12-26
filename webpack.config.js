@@ -7,8 +7,8 @@ module.exports = {
     devtool: "source-map",
     context: path.join(__dirname, "/src/client"),
     entry: {
-        main: "./App",
-        vendor: ["jquery", "react", "react-dom", "react-router"]
+        main: "./main",
+        vendor: ["react", "react-dom", "react-router","react-router-dom", "jquery"]
     },
     output: {
         path: path.join(__dirname, "/public/js/"),
@@ -33,7 +33,7 @@ module.exports = {
             ]},
             { test: /\.svg$/,           use: [
                 { loader: "file-loader?prefix=font/" }
-            ]}
+            ]},
         ]
     },
     plugins: [
